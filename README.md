@@ -51,6 +51,20 @@ and when a data exchange is requested.
 
 On Android's hardware back press or gesture, the flow will go back if there are previous screens.
 
+### Example App
+
+The [Expo example app](example/src/App.tsx) can be run with:
+
+```shell
+yarn example android
+```
+
+or
+
+```shell
+yarn example ios
+```
+
 ### Author
 
 [Benny API Inc.](https://bennyapi.com)
