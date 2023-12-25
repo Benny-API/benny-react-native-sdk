@@ -136,5 +136,8 @@
   },
   "dependencies": {
     "react-native-webview": "^13.6.3"
+  },
+  "overrides": {
+    "semver": "7.5.3"
   }
 }
