@@ -2,6 +2,10 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "ignorePatterns": [
+    "*.config.js",
+    "lib/*"
+  ],
   "extends": [
     "airbnb",
     "airbnb-typescript",
