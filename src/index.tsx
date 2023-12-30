@@ -103,7 +103,7 @@ function BennyApplyFlow(props: Props) {
   );
 
   const url = useMemo(
-    () => `${BASE_URL}?$organizationId=${organizationId}&externalId=${externalId}&isWebView=true`,
+    () => `${BASE_URL}?organizationId=${organizationId}&externalId=${externalId}&isWebView=true`,
     [organizationId, externalId],
   );
 
