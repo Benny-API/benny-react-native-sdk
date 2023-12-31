@@ -118,6 +118,7 @@ function BennyApplyFlow(props: Props) {
       scrollEnabled={false}
       source={{ uri: url }}
       style={styles.container}
+      setBuiltInZoomControls={false}
     />
   );
 }
