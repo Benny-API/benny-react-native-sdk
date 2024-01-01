@@ -51,12 +51,13 @@
   },
   "homepage": "https://github.com/Benny-API/benny-react-native-sdk#readme",
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@react-native/eslint-config": "^0.72.2",
-    "@release-it/conventional-changelog": "^5.0.0",
+    "@release-it/conventional-changelog": "8.0.1",
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
@@ -110,14 +111,15 @@
       "tagName": "v${version}"
     },
     "npm": {
-      "publish": true
+      "publish": false
     },
     "github": {
       "release": true
     },
     "plugins": {
       "@release-it/conventional-changelog": {
-        "preset": "angular"
+        "preset": "angular",
+        "infile": "CHANGELOG.md"
       }
     }
   },
