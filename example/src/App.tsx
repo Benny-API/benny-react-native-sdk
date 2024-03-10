@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import BennyApplyFlow from '@bennyapi/react-native-sdk';
+import { EbtBalanceFlow, EbtBalanceFlowEnvironment } from '@bennyapi/react-native-sdk';
 import {
   Alert, KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet,
 } from 'react-native';
@@ -21,11 +21,12 @@ export default function App() {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.keyboardAvoiding}
       >
-        <BennyApplyFlow
-          organizationId="org_ob6q03t0t8u9okccahyk5wsh"
-          externalId="ext_123"
+        <EbtBalanceFlow
+          organizationId="org_wup29bz683g8habsxvazvyz1"
+          temporaryLinkId="temp_tbshemdbmwo7lmnqo4o2eziy"
           onExit={() => Alert.alert('onExit called')}
-          onDataExchange={() => Alert.alert('onDataExchange called')}
+          onLinkSuccess={(linkToken) => Alert.alert(`onLinkSuccess called ${linkToken}`)}
+          environment={EbtBalanceFlowEnvironment.Production}
         />
       </KeyboardAvoidingView>
     </SafeAreaView>
