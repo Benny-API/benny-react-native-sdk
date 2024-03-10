@@ -1,11 +1,11 @@
 # Benny React Native SDK
 
-The Benny React Native SDK allows your React Native app to start and communicate with the Benny Apply flow.
+The Benny React Native SDK allows your React Native app to use Benny client libraries.
 
 > **Note**
 > See our complete documentation at [docs.bennyapi.com](https://docs.bennyapi.com).
 
-### Installation
+## Installation
 
 Install the SDK using your preferred package manager.
 
@@ -13,37 +13,40 @@ Install the SDK using your preferred package manager.
 yarn install @bennyapi/react-native-sdk
 ```
 
-### Usage
+## Usage
+
+### EBT Balance Flow
+
+The Ebt Balance flow allows users to link their EBT account, returning a tokenized representation
+of their account credentials for the later fetching of balance and transaction information.
 
 #### Required IDs
 
-You'll need an `organizationId`, the ID representing your company or organization and
-ensure correct attribution.
+You'll need an `organizationId`, the ID representing your organization, along with
+a `temporarylinkId` that is generated serverside via a call to the Benny API.
 
 > **Note**
 > Reach out to [help@bennyapi.com](help@bennyapi.com) to setup your organization.
 
 #### Integration
 
-The Benny Apply flow is contained in a simple fullscreen component, `BennyApplyFlow`, that
-is initialized with your organization ID and the external ID. The `externalId` is a non-empty string without spaces that
-is your organization's unique representation of a user.
-This ID is important to ensure that flow state can be tracked and restored.
+The Ebt Balance flow is contained in a simple fullscreen component, `EbtBalanceFlow`, that
+is initialized with your organization ID and the single-use temporary link ID.
 
 Callbacks (i.e., `onExit` and `onDataExchange`) are responsible for communicating to your app when the user wants to
 exit the flow
 and when a data exchange is requested.
 
 ```typescript jsx
-<BennyApplyFlow
+<EbtBalanceFlow
   organizationId="org_123"
-  externalId="cus_123"
+  temporaryLinkId="temp_123"
   onExit={() => {
     /** Your on exit logic. */
   }}
-  onDataExchange={() => {
-    /** Your on data exchange logic. */
-  }}
+  onLinkSuccess={
+    /** Your on link success logic. */
+  }
 />
 ```
 

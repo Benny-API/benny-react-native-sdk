@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
+    "baseUrl": "./",
     "paths": {
-      "@bennyapi/react-native-sdk": ["./src/index"]
+      "@bennyapi/react-native-sdk": [
+        "src/index"
+      ],
+      "@ebt-balance/*": [
+        "src/ebt-balance/*"
+      ]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
