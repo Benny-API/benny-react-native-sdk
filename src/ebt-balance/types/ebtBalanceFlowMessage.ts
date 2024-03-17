@@ -7,7 +7,7 @@ type ExitMessage = { type: 'Exit' };
 type LinkSuccessMessage = { type: 'LinkSuccess'; linkToken: string };
 type OpenUrlExternallyMessage = { type: 'OpenUrlExternally', url: string };
 
-export type EbtBalanceWebAppMessage =
+export type EbtBalanceLinkWebAppMessage =
   | ExitMessage
   | CopyToClipboardMessage
   | LinkSuccessMessage

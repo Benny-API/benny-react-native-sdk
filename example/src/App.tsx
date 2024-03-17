@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { EbtBalanceFlow, EbtBalanceFlowEnvironment } from '@bennyapi/react-native-sdk';
+import { EbtBalanceLinkFlow, EbtBalanceLinkFlowEnvironment } from '@bennyapi/react-native-sdk';
 import {
   Alert, KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet,
 } from 'react-native';
@@ -21,12 +21,12 @@ export default function App() {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.keyboardAvoiding}
       >
-        <EbtBalanceFlow
+        <EbtBalanceLinkFlow
           organizationId="org_wup29bz683g8habsxvazvyz1"
-          temporaryLinkId="temp_tbshemdbmwo7lmnqo4o2eziy"
+          temporaryLink="temp_clr0vujq9000108l66odc7fxv"
           onExit={() => Alert.alert('onExit called')}
           onLinkSuccess={(linkToken) => Alert.alert(`onLinkSuccess called ${linkToken}`)}
-          environment={EbtBalanceFlowEnvironment.Production}
+          environment={EbtBalanceLinkFlowEnvironment.Sandbox}
         />
       </KeyboardAvoidingView>
     </SafeAreaView>

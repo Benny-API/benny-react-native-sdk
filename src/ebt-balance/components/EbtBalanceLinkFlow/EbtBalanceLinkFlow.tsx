@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import WebView, { type WebViewMessageEvent } from 'react-native-webview';
 
-import type { EbtBalanceWebAppMessage } from '@ebt-balance/types/ebtBalanceFlowMessage';
+import type { EbtBalanceLinkWebAppMessage } from '@ebt-balance/types/ebtBalanceFlowMessage';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,21 +18,21 @@ const styles = StyleSheet.create({
 const BASE_PRODUCTION_URL = 'https://ebtbalance.bennyapi.com';
 const BASE_SANDBOX_URL = 'https://ebtbalance-sandbox.bennyapi.com';
 
-export enum EbtBalanceFlowEnvironment {
+export enum EbtBalanceLinkFlowEnvironment {
   Production = 'PRODUCTION',
   Sandbox = 'SANDBOX',
 }
 
-interface EbtBalanceFlowProps {
+interface EbtBalanceLinkFlowProps {
   /**
    * Your organization ID. Prefixed with "org_".
    */
   organizationId: string;
   /**
-   * The temporary link ID required to authenticate
+   * The temporary link required to authenticate
    * the flow. This is obtained from your server.
    */
-  temporaryLinkId: string;
+  temporaryLink: string;
   /**
    * Invoked when the applicant wants to exit the flow.
    */
@@ -50,25 +50,25 @@ interface EbtBalanceFlowProps {
    * The environment of "Production", the default,
    * or "Sandbox" for developer usage.
    */
-  environment?: EbtBalanceFlowEnvironment;
+  environment?: EbtBalanceLinkFlowEnvironment;
 }
 
-export function EbtBalanceFlow(props: EbtBalanceFlowProps) {
+export function EbtBalanceLinkFlow(props: EbtBalanceLinkFlowProps) {
   const {
     organizationId,
-    temporaryLinkId,
+    temporaryLink,
     onExit,
     onLinkSuccess,
-    environment = EbtBalanceFlowEnvironment.Production,
+    environment = EbtBalanceLinkFlowEnvironment.Production,
   } = props;
 
   const url = useMemo(
     () => {
-      const baseUrl = environment === EbtBalanceFlowEnvironment.Production
+      const baseUrl = environment === EbtBalanceLinkFlowEnvironment.Production
         ? BASE_PRODUCTION_URL : BASE_SANDBOX_URL;
-      return `${baseUrl}?organizationId=${organizationId}&temporaryLinkId=${temporaryLinkId}`;
+      return `${baseUrl}?organizationId=${organizationId}&temporaryLink=${temporaryLink}`;
     },
-    [organizationId, environment, temporaryLinkId],
+    [organizationId, environment, temporaryLink],
   );
 
   const webViewRef = useRef<WebView>(null);
@@ -96,7 +96,7 @@ export function EbtBalanceFlow(props: EbtBalanceFlowProps) {
   const handleOnMessage = useCallback(
     (event: WebViewMessageEvent) => {
       const { data } = event.nativeEvent;
-      const message = JSON.parse(data) as unknown as EbtBalanceWebAppMessage;
+      const message = JSON.parse(data) as unknown as EbtBalanceLinkWebAppMessage;
       switch (message.type) {
         case 'CopyToClipboard':
           break;
@@ -104,7 +104,7 @@ export function EbtBalanceFlow(props: EbtBalanceFlowProps) {
           onExit();
           break;
         case 'LinkSuccess':
-          onLinkSuccess?.(message.linkToken);
+          onLinkSuccess(message.linkToken);
           break;
         case 'OpenUrlExternally':
           void Linking.openURL(message.url);
