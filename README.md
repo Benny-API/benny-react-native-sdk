@@ -15,40 +15,43 @@ yarn install @bennyapi/react-native-sdk
 
 ## Usage
 
-### EBT Balance Flow
+### EBT Balance Link Flow
 
-The Ebt Balance flow allows users to link their EBT account, returning a tokenized representation
-of their account credentials for the later fetching of balance and transaction information.
+The Ebt Balance Link Flow allows users to link their EBT account, verifying the account, and
+returning a tokenized representation of the credentials for fetching balance and transaction information.
 
 #### Required IDs
 
 You'll need an `organizationId`, the ID representing your organization, along with
-a `temporarylinkId` that is generated serverside via a call to the Benny API.
+a `temporarylink` that is generated serverside via a call to the Benny API.
 
 > **Note**
-> Reach out to [help@bennyapi.com](help@bennyapi.com) to setup your organization.
+> Reach out to [help@bennyapi.com](help@bennyapi.com) to set up your organization.
 
 #### Integration
 
-The Ebt Balance flow is contained in a simple fullscreen component, `EbtBalanceFlow`, that
-is initialized with your organization ID and the single-use temporary link ID.
+The Ebt Balance Link Flow is contained in a simple fullscreen component, `EbtBalanceLinkFlow`, that
+is initialized with your organization ID and the single-use temporary link.
 
-Callbacks (i.e., `onExit` and `onDataExchange`) are responsible for communicating to your app when the user wants to
-exit the flow
-and when a data exchange is requested.
+Callbacks (i.e., `onExit` and `onLinkSuccess`) are responsible for communicating to your app when the user wants to
+exit the flow and when a link is successful.
 
 ```typescript jsx
-<EbtBalanceFlow
-  organizationId="org_123"
-  temporaryLinkId="temp_123"
+<EbtBalanceLinkFlow
+  organizationId="org_wup29bz683g8habsxvazvyz1"
+  temporaryLink="temp_clr0vujq9000108l66odc7fxv"
   onExit={() => {
     /** Your on exit logic. */
   }}
   onLinkSuccess={
     /** Your on link success logic. */
   }
+  environment={EbtBalanceLinkFlowEnvironment.Sandbox}
 />
 ```
+##### Environments
+Set the environment to `EbtBalanceLinkFlowEnvironment.Sandbox` to integrate with the Benny sandbox environment,
+or omit to default to the production environment.
 
 #### Handling Browser Navigation
 

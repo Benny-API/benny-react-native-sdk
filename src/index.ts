@@ -1,1 +1,1 @@
-export { EbtBalanceFlow, EbtBalanceFlowEnvironment } from '@ebt-balance/components/EbtBalanceFlow/EbtBalanceFlow';
+export { EbtBalanceLinkFlow, EbtBalanceLinkFlowEnvironment } from '@ebt-balance/components/EbtBalanceLinkFlow/EbtBalanceLinkFlow';
