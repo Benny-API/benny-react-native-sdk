@@ -49,11 +49,11 @@ exit the flow and when a link is successful.
   environment={EbtBalanceLinkFlowEnvironment.Sandbox}
 />
 ```
-##### Environments
+#### Environments
 Set the environment to `EbtBalanceLinkFlowEnvironment.Sandbox` to integrate with the Benny sandbox environment,
 or omit to default to the production environment.
 
-#### Handling Browser Navigation
+### Handling Browser Navigation
 
 On Android's hardware back press or gesture, the flow will go back if there are previous screens.
 
