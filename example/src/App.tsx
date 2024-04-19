@@ -14,7 +14,7 @@ export function EbtBalanceLinkFlowContainer() {
         organizationId="org_wup29bz683g8habsxvazvyz1"
         temporaryLink="temp_clr0vujq9000108l66odc7fxv"
         onExit={() => Alert.alert('onExit called')}
-        onLinkSuccess={(linkToken) => Alert.alert(`onLinkSuccess called ${linkToken}`)}
+        onLinkResult={(result) => Alert.alert(`onLinkResult called ${JSON.stringify(result)}`)}
         environment={EbtBalanceLinkFlowEnvironment.Sandbox}
       />
     </KeyboardAvoidingView>

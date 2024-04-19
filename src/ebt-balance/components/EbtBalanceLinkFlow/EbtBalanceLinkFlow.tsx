@@ -8,6 +8,7 @@ import {
 import WebView, { type WebViewMessageEvent } from 'react-native-webview';
 
 import type { EbtBalanceLinkWebAppMessage } from '@ebt-balance/types/ebtBalanceFlowMessage';
+import type { LinkResult } from '@ebt-balance/types/linkResult';
 
 const styles = StyleSheet.create({
   container: {
@@ -37,14 +38,28 @@ interface EbtBalanceLinkFlowProps {
    * Invoked when the applicant wants to exit the flow.
    */
   onExit: () => void;
+
+  /**
+   * Invoked when an EBT account link completes.
+   *
+   * @param result - the {@link LinkResult} which
+   * can include the long-living link token, balances,
+   * and other account holder information.
+   *
+   */
+  onLinkResult?: (result: LinkResult) => void;
+
   /**
    * Invoked when an EBT account was successfully linked.
    *
    * @param linkToken the long living link token that should
    * be stored by your server to later fetch balance and
    * transaction data.
+   *
+   * @deprecated - replaced by {@link onLinkResult} and
+   * to be removed in a future release.
    */
-  onLinkSuccess: (linkToken: string) => void;
+  onLinkSuccess?: (linkToken: string) => void;
 
   /**
    * The environment of "Production", the default,
@@ -58,6 +73,7 @@ export function EbtBalanceLinkFlow(props: EbtBalanceLinkFlowProps) {
     organizationId,
     temporaryLink,
     onExit,
+    onLinkResult,
     onLinkSuccess,
     environment = EbtBalanceLinkFlowEnvironment.Production,
   } = props;
@@ -103,8 +119,11 @@ export function EbtBalanceLinkFlow(props: EbtBalanceLinkFlowProps) {
         case 'Exit':
           onExit();
           break;
+        case 'LinkResult':
+          onLinkResult?.(message.result);
+          break;
         case 'LinkSuccess':
-          onLinkSuccess(message.linkToken);
+          onLinkSuccess?.(message.linkToken);
           break;
         case 'OpenUrlExternally':
           void Linking.openURL(message.url);
@@ -113,7 +132,7 @@ export function EbtBalanceLinkFlow(props: EbtBalanceLinkFlowProps) {
         // Not yet handled.
       }
     },
-    [onLinkSuccess, onExit],
+    [onLinkSuccess, onLinkResult, onExit],
   );
 
   return (

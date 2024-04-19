@@ -33,8 +33,8 @@ a `temporarylink` that is generated serverside via a call to the Benny API.
 The Ebt Balance Link Flow is contained in a simple fullscreen component, `EbtBalanceLinkFlow`, that
 is initialized with your organization ID and the single-use temporary link.
 
-Callbacks (i.e., `onExit` and `onLinkSuccess`) are responsible for communicating to your app when the user wants to
-exit the flow and when a link is successful.
+Callbacks (i.e., `onExit` and `onLinkResult`) are responsible for communicating to your app when the user wants to
+exit the flow and when a link result is obtained.
 
 ```typescript jsx
 <EbtBalanceLinkFlow
@@ -43,8 +43,8 @@ exit the flow and when a link is successful.
   onExit={() => {
     /** Your on exit logic. */
   }}
-  onLinkSuccess={
-    /** Your on link success logic. */
+  onLinkResult={
+    /** Your on link result logic. */
   }
   environment={EbtBalanceLinkFlowEnvironment.Sandbox}
 />
