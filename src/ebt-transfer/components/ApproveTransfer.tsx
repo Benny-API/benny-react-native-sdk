@@ -40,6 +40,7 @@ function ApproveTransfer(): ReactNode {
       subHeader="Enter your EBT card PIN"
       textInput={pin}
       setTextInput={setPin}
+      onExit={ctx.exitCallback}
       buttonProp={(
         <Button
           title="Transfer"
