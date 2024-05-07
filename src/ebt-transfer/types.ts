@@ -34,7 +34,6 @@ export interface CheckBalanceResponse {
 }
 
 export interface EbtTransferRequest {
-  organizationId: string
   idempotencyKey: string
   amount: number
   transferToken: string

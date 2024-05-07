@@ -9,7 +9,7 @@ interface Props {
   organizationId: string
   transferToken: string
   onExit: () => void
-  onResult: (transferToken?: string, error?: string) => void
+  onResult: (balance?: string, error?: string) => void
 }
 
 function EbtBalanceFlow(props: Props): ReactNode {
