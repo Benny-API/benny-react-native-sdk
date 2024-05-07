@@ -20,7 +20,7 @@ interface Props {
   onLinkResult: (transferToken?: string, expiration?: string, error?: string) => void
 }
 
-function LinkEbtCardFlow(props: Props): ReactNode {
+function EbtTransferLinkCardFlow(props: Props): ReactNode {
   const {
     environment, organizationId, temporaryLink, onExit, onLinkResult,
   } = props;
@@ -58,4 +58,4 @@ function LinkEbtCardFlow(props: Props): ReactNode {
   );
 }
 
-export default LinkEbtCardFlow;
+export default EbtTransferLinkCardFlow;

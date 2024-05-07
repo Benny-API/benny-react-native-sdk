@@ -12,7 +12,7 @@ interface Props {
   onResult: (balance?: string, error?: string) => void
 }
 
-function EbtBalanceFlow(props: Props): ReactNode {
+function EbtTransferBalanceFlow(props: Props): ReactNode {
   const {
     environment, organizationId, transferToken, onExit, onResult,
   } = props;
@@ -35,4 +35,4 @@ function EbtBalanceFlow(props: Props): ReactNode {
   );
 }
 
-export default EbtBalanceFlow;
+export default EbtTransferBalanceFlow;

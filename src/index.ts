@@ -1,6 +1,6 @@
-import EbtBalanceFlow from '@ebt-transfer/flows/EbtBalanceFlow';
+import EbtTransferBalanceFlow from '@ebt-transfer/flows/EbtTransferBalanceFlow';
 import EbtTransferFlow from '@ebt-transfer/flows/EbtTransferFlow';
-import LinkEbtCardFlow from '@ebt-transfer/flows/LinkEbtCardFlow';
+import EbtTransferLinkCardFlow from '@ebt-transfer/flows/EbtTransferLinkCardFlow';
 import { EbtTransferEnvironment } from '@ebt-transfer/types';
 
 export {
@@ -8,5 +8,5 @@ export {
 } from '@ebt-balance/components/EbtBalanceLinkFlow/EbtBalanceLinkFlow';
 
 export {
-  LinkEbtCardFlow, EbtBalanceFlow, EbtTransferFlow, EbtTransferEnvironment,
+  EbtTransferLinkCardFlow, EbtTransferBalanceFlow, EbtTransferFlow, EbtTransferEnvironment,
 };
