@@ -114,6 +114,8 @@ exit the flow and when a result is obtained. A successful result returns a balan
 
 #### EBT Transfer Flow 
 
+##### Integration 
+
 The Ebt Transfer Flow is contained in a fullscreen component, `EbtTransferFlow`, that is initialized with an organization ID and a transfer token.
 
 Callbacks (i.e., `onExit` and `onResult`) are responsible for communicating to your app when the user wants to
@@ -137,7 +139,6 @@ A failed result returns an error message.
 #### Environments
 Set the environment to `EbtTransferEnvironment.Sandbox` to integrate with the Benny sandbox environment,
 or omit to default to the production environment.
-
 
 ### Example App
 
