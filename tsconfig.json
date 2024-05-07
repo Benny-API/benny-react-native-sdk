@@ -7,6 +7,9 @@
       ],
       "@ebt-balance/*": [
         "src/ebt-balance/*"
+      ],
+      "@ebt-transfer/*": [
+        "src/ebt-transfer/*"
       ]
     },
     "allowUnreachableCode": false,

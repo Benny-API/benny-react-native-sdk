@@ -6,9 +6,7 @@ import {
 } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import EbtTransferContainer from './EbtTransferContainer';
-
-export function EbtBalanceLinkFlowContainer() {
+function EbtBalanceLinkFlowContainer() {
   const insets = useSafeAreaInsets();
   return (
     <KeyboardAvoidingView style={{ flex: 1, paddingTop: insets.top }}>
@@ -23,10 +21,10 @@ export function EbtBalanceLinkFlowContainer() {
   );
 }
 
-export default function App() {
+export default function Page() {
   return (
     <SafeAreaProvider>
-      <EbtTransferContainer />
+      <EbtBalanceLinkFlowContainer />
     </SafeAreaProvider>
   );
 }

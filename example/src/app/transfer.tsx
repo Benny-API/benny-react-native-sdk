@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import * as React from 'react';
-import type { ReactNode } from 'react';
 
 import {
   EbtBalanceFlow, EbtTransferEnvironment,
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function EbtTransferContainer(): ReactNode {
+export default function Page() {
   const bottomSheetRef = React.useRef<BottomSheet>(null);
   // Open the bottom sheet
   const openAtSnapPoint = (index: number): void => {

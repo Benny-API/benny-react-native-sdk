@@ -23,6 +23,12 @@
         "backgroundColor": "#FFFFFF"
       }
     },
-    "platforms": ["android", "ios"]
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
