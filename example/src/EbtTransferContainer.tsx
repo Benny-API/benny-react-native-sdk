@@ -2,7 +2,9 @@
 import * as React from 'react';
 import type { ReactNode } from 'react';
 
-import { EbtTransferEnvironment, LinkEbtCardFlow } from '@bennyapi/react-native-sdk';
+import {
+  EbtBalanceFlow, EbtTransferEnvironment,
+} from '@bennyapi/react-native-sdk';
 import BottomSheet from '@gorhom/bottom-sheet';
 import {
   Button,
@@ -45,36 +47,46 @@ export default function EbtTransferContainer(): ReactNode {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.keyboardAvoiding}
           >
-            <LinkEbtCardFlow
+            {/* <LinkEbtCardFlow
               environment={EbtTransferEnvironment.Sandbox}
-              organizationId="org_2bbnQ3ZTSLm86mwfkTQEmwKqr0A"
-              temporaryLink="link_d28yi052ba8n53a4a9fzr3pz"
+              organizationId="sandboxorg_p0do4gfvhbvjvz6o2vygbybq"
+              temporaryLink="link_e1r387bplrxjcnifokcns7u3"
               onExit={() => { bottomSheetRef.current?.close(); }}
               onLinkResult={(transferToken?: string, expiration?: string, error?: string) => {
                 if (transferToken !== null) console.log(transferToken);
                 if (expiration !== null) console.log(expiration);
                 if (error !== null) console.log(error);
               }}
-            />
+            /> */}
             {/* <EbtTransferFlow
           environment={EbtTransferEnvironment.Sandbox}
-          organizationId="org_2bbnQ3ZTSLm86mwfkTQEmwKqr0A"
+          organizationId="sandboxorg_p0do4gfvhbvjvz6o2vygbybq"
           transferToken="transfer_pbvckvg2ry35715os5q376rw"
           onExit={() => {}}
           amount={100}
           idempotencyKey="idempotency"
-          onSuccess={() => {
-            console.log('success');
+          onResult={(error?: string) => {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('success');
+            }
           }}
         /> */}
-            {/* <EbtBalanceFlow
-          environment={EbtTransferEnvironment.Sandbox}
-          organizationId="org_2bbnQ3ZTSLm86mwfkTQEmwKqr0A"
-          transferToken="transfer_pbvckvg2ry35715os5q376rw"
-          onExit={() => {}}
-          onSuccess={(balance: string) => {
-            console.log(balance);
-          }} /> */}
+            <EbtBalanceFlow
+              environment={EbtTransferEnvironment.Sandbox}
+              organizationId="org_2bbnQ3ZTSLm86mwfkTQEmwKqr0A"
+              transferToken="transfer_pbvckvg2ry35715os5q376rw"
+              onExit={() => {}}
+              onResult={(balance?: string, error?: string) => {
+                if (balance) {
+                  console.log(balance);
+                }
+                if (error) {
+                  console.log('error');
+                }
+              }}
+            />
           </KeyboardAvoidingView>
         </SafeAreaView>
       </BottomSheet>

@@ -19,7 +19,7 @@ import {
 } from './types';
 
 const environmentUrls: Record<string, string> = {
-  [EbtTransferEnvironment.Sandbox]: 'https://api-staging.bennyapi.com/v1/ebt/transfer',
+  [EbtTransferEnvironment.Sandbox]: 'https://api-sandbox.bennyapi.com/v1/ebt/transfer',
   [EbtTransferEnvironment.Production]: 'https://api-production.bennyapi.com/v1/ebt/transfer',
 };
 const createAxiosInstance = (ctx: AppContext): AxiosInstance => axios.create({
@@ -65,7 +65,6 @@ export const approveTransfer = async (
 ): Promise<AxiosResponse<EbtTransferResponse, EbtTransferApiError>> => {
   const instance = createAxiosInstance(ctx.appContext);
   const request: EbtTransferRequest = {
-    organizationId: ctx.appContext.organizationId,
     idempotencyKey: ctx.idempotencyKey,
     amount: ctx.amount,
     transferToken: ctx.transferToken,
