@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 import {
-  EbtTransferEnvironment, EbtTransferFlow,
+  EbtTransferBalanceFlow, EbtTransferEnvironment,
 } from '@bennyapi/react-native-sdk';
 import { router } from 'expo-router';
 
@@ -11,18 +11,17 @@ import BaseSheetView from 'example/src/components/BaseSheetView';
 export default function Page() {
   return (
     <BaseSheetView>
-      <EbtTransferFlow
+      <EbtTransferBalanceFlow
         environment={EbtTransferEnvironment.Sandbox}
-        organizationId="sandboxorg_p0do4gfvhbvjvz6o2vygbybq"
+        organizationId="org_2bbnQ3ZTSLm86mwfkTQEmwKqr0A"
         transferToken="transfer_pbvckvg2ry35715os5q376rw"
         onExit={() => router.replace('/')}
-        amount={100}
-        idempotencyKey="idempotency"
-        onResult={(error?: string) => {
+        onResult={(balance?: string, error?: string) => {
+          if (balance) {
+            console.log(balance);
+          }
           if (error) {
-            console.log(error);
-          } else {
-            console.log('success');
+            console.log('error');
           }
         }}
       />
