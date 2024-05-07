@@ -73,7 +73,6 @@ function BaseEntry(props: Props): ReactNode {
       <ExitButton onExit={onExit} />
       <Text
         style={{
-          fontFamily: 'Roboto',
           fontWeight: '600',
           fontSize: 22,
           textAlign: 'center',
@@ -84,7 +83,6 @@ function BaseEntry(props: Props): ReactNode {
       <Text
         style={{
           color: '#6C6C71',
-          fontFamily: 'Roboto',
           fontSize: 16,
           fontWeight: '400',
           marginTop: 10,
