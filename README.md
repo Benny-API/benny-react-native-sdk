@@ -83,7 +83,7 @@ A failed link result returns an error message.
     /** Your on exit logic. */
   }}
   onLinkResult={
-    /** Your on link result logic. */
+    (transferToken?: string, expiration?: string, error?: string) {/** Your on link result logic. */}
   }
   environment={EbtTransferEnvironment.Sandbox}
 />
