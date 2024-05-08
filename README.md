@@ -116,7 +116,8 @@ exit the flow and when a result is obtained. A successful result returns a balan
 
 ##### Integration 
 
-The Ebt Transfer Flow is contained in a fullscreen component, `EbtTransferFlow`, that is initialized with an organization ID and a transfer token.
+The Ebt Transfer Flow is contained in a fullscreen component, `EbtTransferFlow`, that is initialized with an organization ID, a transfer token, a cents denominated amount,
+and an idempotency key for the transfer.
 
 Callbacks (i.e., `onExit` and `onResult`) are responsible for communicating to your app when the user wants to
 exit the flow and when a transfer result is obtained. A successful result calls the onResult callback with no value.
@@ -126,6 +127,8 @@ A failed result returns an error message.
 <EbtTransferFlow
   organizationId="org_wup29bz683g8habsxvazvyz1"
   transferToken="transfer_sf3k3absxvazvjsd3lks"
+  amount={100}
+  idempotencyKey="idempotency"
   onExit={() => {
     /** Your on exit logic. */
   }}
