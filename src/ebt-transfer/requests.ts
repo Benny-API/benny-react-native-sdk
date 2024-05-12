@@ -13,7 +13,6 @@ import {
   type CheckBalanceResponse,
   type EbtTransferApiError,
   type EbtTransferRequest,
-  type EbtTransferResponse,
   type ExchangeLinkTokenRequest,
   type ExchangeLinkTokenResponse,
 } from './types';
@@ -62,7 +61,7 @@ export const checkBalance = async (
 export const approveTransfer = async (
   ctx: EbtTransferContext,
   pin: string,
-): Promise<AxiosResponse<EbtTransferResponse, EbtTransferApiError>> => {
+): Promise<AxiosResponse<void, EbtTransferApiError>> => {
   const instance = createAxiosInstance(ctx.appContext);
   const request: EbtTransferRequest = {
     idempotencyKey: ctx.idempotencyKey,
@@ -70,5 +69,5 @@ export const approveTransfer = async (
     transferToken: ctx.transferToken,
     pin,
   };
-  return instance.post<EbtTransferResponse>('', request);
+  return instance.post<void>('', request);
 };
