@@ -1,6 +1,6 @@
 # Benny React Native SDK
 
-The Benny React Native SDK allows your React Native app to use Benny client libraries.
+The Benny React Native SDK allows your app to use Benny client libraries.
 
 > **Note**
 > See our complete documentation at [docs.bennyapi.com](https://docs.bennyapi.com).
@@ -13,14 +13,12 @@ Install the SDK using your preferred package manager.
 yarn install @bennyapi/react-native-sdk
 ```
 
-## Usage
+## EBT Balance Link Flow
 
-### EBT Balance Link Flow
-
-The Ebt Balance Link Flow allows users to link their EBT account, verifying the account, and
+The Ebt Balance Link Flow allows users to link their EBT account, verify the account, and
 returning a tokenized representation of the credentials for fetching balance and transaction information.
 
-#### Required IDs
+### Required IDs
 
 You'll need an `organizationId`, the ID representing your organization, along with
 a `temporarylink` that is generated serverside via a call to the Benny API.
@@ -28,7 +26,7 @@ a `temporarylink` that is generated serverside via a call to the Benny API.
 > **Note**
 > Reach out to [help@bennyapi.com](help@bennyapi.com) to set up your organization.
 
-#### Integration
+### Integration
 
 The Ebt Balance Link Flow is contained in a simple fullscreen component, `EbtBalanceLinkFlow`, that
 is initialized with your organization ID and the single-use temporary link.
@@ -49,31 +47,24 @@ exit the flow and when a link result is obtained.
   environment={EbtBalanceLinkFlowEnvironment.Sandbox}
 />
 ```
-#### Environments
+### Environments
 Set the environment to `EbtBalanceLinkFlowEnvironment.Sandbox` to integrate with the Benny sandbox environment,
 or omit to default to the production environment.
 
 ### Handling Browser Navigation
 
-On Android's hardware back press or gesture, the flow will go back if there are previous screens.
+The flow will go back on Android's hardware back press or gesture if there are previous screens.
 
-### EBT Transfer 
+## EBT Transfer 
 
-The Ebt Transfer product is comprised of three flows: EbtTransferLinkCardFlow, EbtTransferBalanceFlow, and the EbtTransferFlow. 
+The EBT Transfer product consists of `EbtTransferLinkCardFlow`, `EbtTransferBalanceFlow`, and the `EbtTransferFlow`. Once a user successfully links their EBT card through the `EbtTransferLinkCardFlow`, a transfer token is created. The transfer token allows for EBT balance checks through the `EbtTransferBalanceFlow` and EBT cash transfers through the `EbtTransferBalanceFlow`.
 
-Once a user successfully goes links their Ebt card through the EbtTransferLinkCardFlow and a transfer token is created, the EbtTransferBalanceFlow
-and EbtTransferFlow can be used. The EbtTransferBalanceFlow is used to check a user's balance. The EbtTransferBalanceFlow is used to initiate 
-a transfer. 
+### Link Card Flow 
 
-#### EBT Transfer Link Card Flow 
+The `EbtTransferLinkCardFlow` is initialized with an organization ID and a single-use temporary link generated serverside via a call to Benny's API.
 
-##### Integration 
-
-Similar to the Ebt Balance Link Flow, The Ebt Transfer Link Card Flow is contained in a fullscreen component, `EbtTransferLinkCardFlow`, that is initialized with an organization ID and single-use temporary link.
-
-Callbacks (i.e., `onExit` and `onLinkResult`) are responsible for communicating to your app when the user wants to
-exit the flow and when a link result is obtained. A successful link result returns a transfer token and expiration date for the transfer token.
-A failed link result returns an error message. 
+Callbacks (i.e., `onExit` and `onLinkResult`) are responsible for communicating to your app when the user wants to exit the flow and when a link result is obtained. A
+successful link result returns a transfer token along with its expiration date. A failed link result returns an error message. 
 
 ```typescript jsx
 <EbtTransferLinkCardFlow
@@ -89,14 +80,11 @@ A failed link result returns an error message.
 />
 ```
 
-#### EBT Transfer Balance Flow 
-
-##### Integration 
-
-The Ebt Transfer Balance Flow is contained in a fullscreen component, `EbtTransferBalanceFlow`, that is initialized with an organization ID and transfer token.
+### Balance Flow 
+The `EbtTransferBalanceFlow` is initialized with an organization ID and the transfer token obtained earlier.
 
 Callbacks (i.e., `onExit` and `onResult`) are responsible for communicating to your app when the user wants to
-exit the flow and when a result is obtained. A successful result returns a balance. A failed link result returns an error message. 
+exit the flow and when a result is obtained. A successful result returns the customer's cents-denominated EBT cash balance, while a failed link result returns an error message. 
 
 ```typescript jsx
 <EbtTransferBalanceFlow
@@ -112,16 +100,11 @@ exit the flow and when a result is obtained. A successful result returns a balan
 />
 ```
 
-#### EBT Transfer Flow 
+### Transfer Flow
+The `EbtTransferFlow` is initialized with an organization ID, the transfer token obtained earlier, a cents-denominated amount that the customer wishes to transfer, and an idempotency key.
 
-##### Integration 
-
-The Ebt Transfer Flow is contained in a fullscreen component, `EbtTransferFlow`, that is initialized with an organization ID, a transfer token, a cents denominated amount,
-and an idempotency key for the transfer.
-
-Callbacks (i.e., `onExit` and `onResult`) are responsible for communicating to your app when the user wants to
-exit the flow and when a transfer result is obtained. A successful result calls the onResult callback with no value.
-A failed result returns an error message. 
+Callbacks (i.e., `onExit` and `onResult`) are responsible for communicating to your app when the user wants to exit the flow and when a transfer result is obtained. 
+A successful result invokes the `onResult` callback with no value, while a failed result returns an error message. 
 
 ```typescript jsx
 <EbtTransferFlow
@@ -139,7 +122,7 @@ A failed result returns an error message.
 />
 ```
 
-#### Environments
+### Environments
 Set the environment to `EbtTransferEnvironment.Sandbox` to integrate with the Benny sandbox environment,
 or omit to default to the production environment.
 
