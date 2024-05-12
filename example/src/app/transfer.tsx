@@ -5,6 +5,7 @@ import {
   EbtTransferEnvironment, EbtTransferFlow,
 } from '@bennyapi/react-native-sdk';
 import { router } from 'expo-router';
+import uuid from 'react-native-uuid';
 
 import BaseSheetView from 'example/src/components/BaseSheetView';
 
@@ -17,12 +18,13 @@ export default function Page() {
         transferToken="transfer_pbvckvg2ry35715os5q376rw"
         onExit={() => router.replace('/')}
         amount={100}
-        idempotencyKey="idempotency"
+        idempotencyKey={uuid.v4().toString()}
         onResult={(error?: string) => {
           if (error) {
             console.log(error);
           } else {
             console.log('success');
+            router.replace('/');
           }
         }}
       />

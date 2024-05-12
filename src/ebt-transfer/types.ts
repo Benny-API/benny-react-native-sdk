@@ -4,7 +4,6 @@ import { EbtBalanceLinkFlowEnvironment } from '@ebt-balance/components/EbtBalanc
 
 export { EbtBalanceLinkFlowEnvironment as EbtTransferEnvironment };
 
-export type ScreenNames = ['PanEntry', 'PinEntry'];
 export interface RootStackParamList extends ParamListBase {
   PanEntry: undefined
   PinEntry: { 'cardNumber': string }
@@ -38,11 +37,6 @@ export interface EbtTransferRequest {
   amount: number
   transferToken: string
   pin: string
-}
-
-export interface EbtTransferResponse {
-  transactionId: string
-  balance: string
 }
 
 export interface EbtTransferApiError {
