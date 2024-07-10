@@ -1,6 +1,6 @@
 {
   "name": "@bennyapi/react-native-sdk",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Benny API's React Native SDK",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
