@@ -50,18 +50,6 @@ interface EbtBalanceLinkFlowProps {
   onLinkResult?: (result: LinkResult) => void;
 
   /**
-   * Invoked when an EBT account was successfully linked.
-   *
-   * @param linkToken the long living link token that should
-   * be stored by your server to later fetch balance and
-   * transaction data.
-   *
-   * @deprecated - replaced by {@link onLinkResult} and
-   * to be removed in a future release.
-   */
-  onLinkSuccess?: (linkToken: string) => void;
-
-  /**
    * The environment of "Production", the default,
    * or "Sandbox" for developer usage.
    */
@@ -74,7 +62,6 @@ export function EbtBalanceLinkFlow(props: EbtBalanceLinkFlowProps) {
     temporaryLink,
     onExit,
     onLinkResult,
-    onLinkSuccess,
     environment = EbtBalanceLinkFlowEnvironment.Production,
   } = props;
 
@@ -122,9 +109,6 @@ export function EbtBalanceLinkFlow(props: EbtBalanceLinkFlowProps) {
         case 'LinkResult':
           onLinkResult?.(message.result);
           break;
-        case 'LinkSuccess':
-          onLinkSuccess?.(message.linkToken);
-          break;
         case 'OpenUrlExternally':
           void Linking.openURL(message.url);
           break;
@@ -132,7 +116,7 @@ export function EbtBalanceLinkFlow(props: EbtBalanceLinkFlowProps) {
         // Not yet handled.
       }
     },
-    [onLinkSuccess, onLinkResult, onExit],
+    [onLinkResult, onExit],
   );
 
   return (
